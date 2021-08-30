@@ -10,12 +10,12 @@ const DIGITS = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 function isSolved(initial, sudoku) {
   for (let i = 0; i < 9; i++) {
-    let [r,c] = [Math.floor(i/3)*3,(i%3)*3];
+    let [r, c] = [Math.floor(i / 3) * 3, (i % 3) * 3];
     if (
-        (sudoku[i].reduce((s,v)=>(s.delete(v), s), new Set(DIGITS)).size != 0) ||
-        (sudoku.reduce((s,v)=>(s.delete(v[i]), s), new Set(DIGITS)).size != 0) ||
-        (sudoku.slice(r,r+3).reduce((s,v)=>v.slice(c,c+3).reduce((s,v)=>(s.delete(v), s), s), new Set(DIGITS)).size != 0)
-      ) return false;
+      (sudoku[i].reduce((s, v) => (s.delete(v), s), new Set(DIGITS)).size != 0) ||
+      (sudoku.reduce((s, v) => (s.delete(v[i]), s), new Set(DIGITS)).size != 0) ||
+      (sudoku.slice(r, r + 3).reduce((s, v) => v.slice(c, c + 3).reduce((s, v) => (s.delete(v), s), s), new Set(DIGITS)).size != 0)
+    ) return false;
   }
   return initial.every((row, rowIndex) => {
     return row.every((num, colIndex) => {
